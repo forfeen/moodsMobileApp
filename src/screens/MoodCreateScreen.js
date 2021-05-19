@@ -1,8 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import { Text } from 'react-native-elements';
+import MoodForm from '../components/MoodForm';
 
 const MoodCreateScreen = () => {
-    return <Text style={{fontSize: 48}}>  MoodCreateScreen </Text>
+    return (
+        <View>
+            <Text h2 style={{fontSize: 20, marginTop: 100, marginLeft: 10}}> What did you feel today? </Text>
+            <MoodForm />
+        </View>
+    );
 }
 
 
