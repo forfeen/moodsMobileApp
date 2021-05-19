@@ -12,7 +12,7 @@ import SignupScreen from './src/screens/SignupScreen';
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
-    Signup: SignupScreen,
+    SignUp: SignupScreen,
     Signin: SigninScreen
   }),
   mainFlow: createBottomTabNavigator({
