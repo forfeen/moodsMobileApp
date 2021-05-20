@@ -1,5 +1,5 @@
 import createDataContext from './createDataContext';
-import MoodsApi from '../api/moods';
+import UserApi from '../api/users';
 import { AsyncStorage } from 'react-native';
 import {navigate} from '../navigationRef';
 
@@ -22,7 +22,7 @@ const tryLocalSignin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
         dispatch({ type: 'signin', payload: token});
-        navigate('moodList');
+        navigate('Mood');
     } else {
         navigate('Signup')
     }
@@ -34,10 +34,10 @@ const clearErrorMessage = dispatch => () => {
 
 const signup = dispatch => async ({email, password}) => {
         try{
-            const response = await MoodsApi.post('/signup', { email, password});
+            const response = await UserApi.post('/signup', { email, password});
             await AsyncStorage.setItem('token', response.data.token);
             dispatch({ type: 'signin', payload: response.data.token});
-            navigate('moodList')
+            navigate('Mood')
         } catch (err) {
             dispatch({ type: 'add_error', payload: 'Something went wrong with sign up'})
         }
@@ -46,10 +46,10 @@ const signup = dispatch => async ({email, password}) => {
 
 const signin = (dispatch) => async ({email, password}) => {
         try {
-            const response = await MoodsApi.post('/signin', { email, password});
+            const response = await UserApi.post('/signin', { email, password});
             await AsyncStorage.setItem('token', response.data.token);
             dispatch({ type: 'signin', payload: response.data.token});
-            navigate('moodList')
+            navigate('Mood')
         } catch (err) {
             dispatch({ type: 'add_error', 
             payload: 'Something went wrong with sign in'})

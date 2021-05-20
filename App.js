@@ -10,6 +10,8 @@ import MoodListScreen from './src/screens/MoodListScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
+import { Provider as MoodProvider } from './src/context/MoodContext';
+
 import {setNavigator} from './src/navigationRef';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 
@@ -21,7 +23,7 @@ const switchNavigator = createSwitchNavigator({
   }),
   mainFlow: createBottomTabNavigator({
     moodListFlow: createStackNavigator({
-      moodList: MoodListScreen,
+      Mood: MoodListScreen,
       moodDetail: MoodDetailScreen
     }),
     MoodCreate: MoodCreateScreen,
@@ -33,7 +35,9 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return(
     <AuthProvider>
-      <App ref={(navigator) => {setNavigator(navigator)}} />
+      <MoodProvider>
+        <App ref={(navigator) => {setNavigator(navigator)}} />
+      </MoodProvider>
     </AuthProvider>
   );
 };
